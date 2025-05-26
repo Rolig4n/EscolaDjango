@@ -1,3 +1,17 @@
 from django.contrib import admin
+from escoladjango.models import Estudante, Curso
 
-# Register your models here.
+class Estudantes(admin.ModelAdmin):
+    list_display = ('id', 'nome', 'email', 'cpf', 'data_nascimento', 'numero_celular')
+    list_display_links = ('id', 'nome',)
+    list_per_page = 10
+    search_fields = ('nome', 'email', 'cpf',)
+
+admin.site.register(Estudante, Estudantes)
+
+class Cursos(admin.ModelAdmin):
+    list_display = ('id', 'codigo', 'descricao')
+    list_display_links = ('id', 'codigo',)
+    search_fields = ('codigo',)
+
+admin.site.register(Curso, Cursos)
