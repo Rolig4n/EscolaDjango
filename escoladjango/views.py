@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 
-def estudante(request):
+def estudantes(request):
     """
     Visualização para lidar com solicitações de dados do aluno.
     Retorna uma resposta JSON com informações do aluno.
