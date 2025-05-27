@@ -1,18 +1,42 @@
-from django.http import JsonResponse
+from escoladjango.models import Estudante, Curso, Matricula
+from escoladjango.serializers import EstudanteSerializer, CursoSerializer, MatriculaSerializer, ListaMatriculasCursoSerializer, ListaMatriculasEstudanteSerializer
+from rest_framework import viewsets, generics
 
-def estudantes(request):
+class EstudanteViewSet(viewsets.ModelViewSet):
     """
-    Visualização para lidar com solicitações de dados do aluno.
-    Retorna uma resposta JSON com informações do aluno.
+    Endpoint da API que permite visualizar ou editar estudantes.
     """
-    if request.method != 'GET':
-        return JsonResponse({'error': 'Método não permitido'}, status=405)
-    else:
-        # Example student data
-        student_data = {
-            "name": "John Doe",
-            "age": 20,
-            "course": "Computer Science"
-        }
-    
-        return JsonResponse(student_data)
+    queryset = Estudante.objects.all()
+    serializer_class = EstudanteSerializer
+
+class CursoViewSet(viewsets.ModelViewSet):
+    """
+    Endpoint da API que permite visualizar ou editar cursos.
+    """
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializer
+
+class MatriculaViewSet(viewsets.ModelViewSet):
+    """
+    Endpoint da API que permite visualizar ou editar matrículas.
+    """
+    queryset = Matricula.objects.all()
+    serializer_class = MatriculaSerializer
+
+class ListaMatriculaEstudantes(generics.ListAPIView):
+    """
+    Endpoint da API que lista as matrículas de um estudante específico.
+    """
+    def get_queryset(self):
+        queryset = Matricula.objects.filter(estudante_id=self.kwargs['pk'])
+        return queryset
+    serializer_class = ListaMatriculasEstudanteSerializer
+
+class ListaMatriculaCurso(generics.ListAPIView):
+    """
+    Endpoint da API que lista as matrículas de um curso específico.
+    """
+    def get_queryset(self):
+        queryset = Matricula.objects.filter(curso_id=self.kwargs['pk'])
+        return queryset
+    serializer_class = ListaMatriculasCursoSerializer
