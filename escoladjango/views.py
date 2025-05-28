@@ -1,5 +1,5 @@
 from escoladjango.models import Estudante, Curso, Matricula
-from escoladjango.serializers import EstudanteSerializer, CursoSerializer, MatriculaSerializer, ListaMatriculasCursoSerializer, ListaMatriculasEstudanteSerializer
+from escoladjango.serializers import EstudanteSerializer, CursoSerializer, MatriculaSerializer, ListaMatriculasCursoSerializer, ListaMatriculasEstudanteSerializer, EstudanteSerializerV2
 from rest_framework import viewsets, generics, filters
 from django_filters.rest_framework import DjangoFilterBackend as dFilter
 
@@ -8,10 +8,14 @@ class EstudanteViewSet(viewsets.ModelViewSet):
     Endpoint da API que permite visualizar ou editar estudantes.
     """
     queryset = Estudante.objects.all()
-    serializer_class = EstudanteSerializer
+    # serializer_class = EstudanteSerializer
     filter_backends = [dFilter, filters.OrderingFilter, filters.SearchFilter]
     ordering_fields = ['nome']
     search_fields = ['nome', 'cpf']
+    def get_serializer_class(self):
+        if self.request.version == 'v2':
+            return EstudanteSerializerV2
+        return EstudanteSerializer
 
 class CursoViewSet(viewsets.ModelViewSet):
     """
