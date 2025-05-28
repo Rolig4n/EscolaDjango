@@ -14,7 +14,7 @@ class Estudante(models.Model):
     email = models.EmailField(blank=False)
     cpf = models.CharField(max_length=11, unique=True) #unique foi adicionado anteriormente de forma precipitada
     data_nascimento = models.DateField()
-    numero_celular = models.CharField(max_length=14)
+    numero_celular = models.CharField(max_length=13)
 
     def __str__(self):
         return self.nome
