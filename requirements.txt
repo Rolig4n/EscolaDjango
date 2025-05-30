@@ -8,16 +8,12 @@ djangorestframework==3.16.0
 drf-yasg==1.21.10
 Faker==37.3.0
 jsonpointer==2.1
-mkl-service==2.4.0
 protobuf==3.20.3
 pyasn1-modules==0.2.8
 pycurl==7.45.2
 pyls-spyder==0.4.0
-PyQt5==5.15.10
-PyQtWebEngine==5.15.6
 pywin32==305.1
 setuptools==80.9.0
 sqlparse==0.5.3
 uritemplate==4.1.1
 validate-docbr==1.10.0
-wheel==0.43.0
