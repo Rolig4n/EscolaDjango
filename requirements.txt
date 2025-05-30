@@ -17,3 +17,4 @@ setuptools==80.9.0
 sqlparse==0.5.3
 uritemplate==4.1.1
 validate-docbr==1.10.0
+wheel==0.43.0
