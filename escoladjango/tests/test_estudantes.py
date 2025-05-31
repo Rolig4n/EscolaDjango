@@ -6,25 +6,30 @@ from escoladjango.models import Estudante
 from escoladjango.serializers import EstudanteSerializer
 
 class EstudantesTestCase(APITestCase):
+    fixtures = ["proto_banco.json"]
+
     def setUp(self):
-        self.usuario = User.objects.create_superuser(username="admin", password="admin")
+        # self.usuario = User.objects.create_superuser(username="admin", password="admin")
+        self.usuario = User.objects.get(username="admin")
         self.url = reverse("Estudantes-list")
         self.client.force_authenticate(user=self.usuario)
 
-        self.estudante_1 = Estudante.objects.create(
-            nome = "Teste Estudante 1",
-            email="testeestudante1@gmail.com",
-            cpf="91546870040",
-            data_nascimento="2003-02-02",
-            numero_celular="86 99999-9989"
-        )
-        self.estudante_2 = Estudante.objects.create(
-            nome = "Teste Estudante 2",
-            email="testeestudante2@gmail.com",
-            cpf="85020072036",
-            data_nascimento="2003-02-02",
-            numero_celular="86 99999-9998"
-        )
+        # self.estudante_1 = Estudante.objects.create(
+        #     nome = "Teste Estudante 1",
+        #     email="testeestudante1@gmail.com",
+        #     cpf="91546870040",
+        #     data_nascimento="2003-02-02",
+        #     numero_celular="86 99999-9989"
+        # )
+        self.estudante_1 = Estudante.objects.get(pk=1)
+        # self.estudante_2 = Estudante.objects.create(
+        #     nome = "Teste Estudante 2",
+        #     email="testeestudante2@gmail.com",
+        #     cpf="85020072036",
+        #     data_nascimento="2003-02-02",
+        #     numero_celular="86 99999-9998"
+        # )
+        self.estudante_2 = Estudante.objects.get(pk=2)
     
     def test_request_get_lista_estudantes(self):
         """Testa a requisição GET da lista de estudantes."""
