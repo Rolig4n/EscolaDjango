@@ -59,6 +59,12 @@ O sistema oferece as seguintes funcionalidades através de sua API:
 
 Tudo documentado, tanto com [swagger](http://18.217.233.248:8000/swagger) ou [redoc](http://18.217.233.248:8000/redoc)
 
+Alem da implementação de testes, unitários e de integração. Basta executar o comando a baixo
+
+```
+python manage.py test
+```
+
 ## Repositório no GitHub
 
 O código fonte completo deste projeto está disponível no GitHub:
